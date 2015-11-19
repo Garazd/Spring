@@ -15,7 +15,9 @@ public class Starter {
 
         AbstractApplicationContext context = new AnnotationConfigApplicationContext(LessonsConfiguration.class);
         GreetingService greetingService = context.getBean(GreetingService.class);
-        logger.info(greetingService.sayGreeting());  // "Greeting, user!"
+        BeanWithDependency withDependency = context.getBean(BeanWithDependency.class);
+        logger.info(greetingService.sayGreeting()); // "Greeting, user!"
+        logger.info(withDependency.printText());    // "Some text!"
         context.registerShutdownHook();
     }
 }
